@@ -86,13 +86,13 @@ public class ClassicBluetoothActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classicbt);
-        getSupportActionBar().setTitle("Classic Bluetooth Sample");
+        getSupportActionBar().setTitle("Central Library");
         init();
     }
 
     private void initBT(){
         mBluetoothController = BluetoothController.getInstance().build(this);
-        mBluetoothController.setAppUuid(UUID.fromString("fa87c0d0-afac-12de-8a39-0450200c9a66"));
+        mBluetoothController.setAppUuid(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
         mBluetoothController.setBluetoothListener(mListener);
 
         tvBTState.setText("Bluetooth state: "
@@ -124,14 +124,16 @@ public class ClassicBluetoothActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // for Android 6.0+, request dangerous permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    Log.e(TAG, String.valueOf(Build.VERSION.SDK_INT));
                     int permission = ActivityCompat.checkSelfPermission(
                             ClassicBluetoothActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION);
+                    Log.e(TAG,String.valueOf(permission));
                     if (permission != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(ClassicBluetoothActivity.this,
                                 new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                     }
-                }
+                }*/
 
                 mList.clear();
                 mFoundAdapter.notifyDataSetChanged();
